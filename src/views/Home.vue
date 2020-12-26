@@ -5,7 +5,6 @@
   </div>
 </template>
 <script>
-
 import TodoList from '../components/TodoList.vue'
 import todoInput from '../components/todoInput.vue'
 
@@ -16,4 +15,5 @@ export default {
     todoInput
   }
 };
+</script>
 
