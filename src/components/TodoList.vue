@@ -1,19 +1,20 @@
 <template>
-  <div>
-    <ul class="todolist">
-      <li v-for="(todo, index) in state.todoList" :key="todo.id">
-        <router-link :to="{name: 'detail', params: {id: todo.id}}" >{{ todo.todo }}</router-link>
+  <ul class="p-1.5 h-full">
+    <li class="flex justify-between items-center font-semibold" v-for="(todo, index) in state.todoList" :key="todo.id">
+      {{ todo.todo }}
+      <div>
+        <router-link class="btn bg-gray-400 hover:bg-gray-600 mr-4" :to="{name: 'detail', params: {id: todo.id}}">詳細</router-link>
         <complete-button :index="index" @complete-todo="completeTodoAction" />
-      </li>
-    </ul>
-    <todo-input :lastId="lastId" @add-todo="addTodoAction" />
-  </div>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, reactive} from 'vue'
 import todoInput from '../components/todoInput.vue'
 import CompleteButton from '../components/CompleteButton.vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'TodoList',
@@ -23,9 +24,11 @@ export default defineComponent({
   },
 
   setup() {
-    const state = reactive<{todoList: Array<{id: number, todo: string}>}>({
-      todoList: []
+    const store = useStore()
+    const state = reactive<{todoList: Array<{id: number, value: string}>}>({
+      todoList: store.state.todoList
     });
+
 
     const lastId = computed(() => {
       if(state.todoList.length === 0){
@@ -36,15 +39,20 @@ export default defineComponent({
       }
     })
 
-    const addTodoAction = (id: number, value: string) => {
-      state.todoList.push({id: id,  todo: value})
-    };
-
     const completeTodoAction = (targetIndex) => {
       state.todoList.splice(targetIndex, 1)
     }
 
-    return { state, addTodoAction, completeTodoAction, lastId };
+    return { state, completeTodoAction, lastId };
   }
 });
 </script>
+
+<style scoped>
+  ul {
+    list-style: disc;
+  }
+  .btn {
+    @apply py-2 px-4 font-semibold rounded-lg shadow-md;
+  }
+</style>

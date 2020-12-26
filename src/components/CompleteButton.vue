@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <button v-bind="props.index" @click="completed"> 完了</button>
-  </div>
+  <button class="btn btn-green" v-bind="props.index" @click="completed"> 完了</button>
 </template>
 
 <script lang="ts">
@@ -27,3 +25,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style>
+  .btn {
+    @apply py-2 px-4 font-semibold rounded-lg shadow-md;
+  }
+  .btn-green {
+    @apply text-white bg-green-500 hover:bg-green-700;
+  }
+</style>
