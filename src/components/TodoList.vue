@@ -1,7 +1,9 @@
 <template>
   <ul class="p-1.5 h-full">
     <li class="flex justify-between items-center font-semibold" v-for="(todo, index) in state.todoList" :key="todo.id">
-      {{ todo.todo }}
+      <p class="w-2/4 break-all text-left">
+        {{ todo.todo }}
+      </p>
       <div>
         <router-link class="btn bg-gray-400 hover:bg-gray-600 mr-4" :to="{name: 'detail', params: {id: todo.id}}">詳細</router-link>
         <complete-button :index="index" @complete-todo="completeTodoAction" />

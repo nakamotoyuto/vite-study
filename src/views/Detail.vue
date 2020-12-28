@@ -1,14 +1,17 @@
 <template>
   <div class="flex justify-between flex-col h-full">
     <template v-if="detailItem">
-      <div>
-        <h2>タイトル {{ detailItem.todo }}</h2>
-        <div>
-          <h3>
+      <div class="text-left p-8">
+        <h2>
+          <p class="text-2xl font-bold">タイトル</p>
+          <p class="p-4 bg-yellow-50 text-xl">{{ detailItem.todo }}</p>
+        </h2>
+        <div class="my-8">
+          <h3 class="text-xl font-bold">
             コメント一覧
           </h3>
-          <ul>
-            <li class="flex justify-between items-center font-semibold" v-for="(comment) in detailItem.comment" :key="comment">
+          <ul class="my-8">
+            <li class="mb-4 last:mb-0 flex justify-between items-center font-semibold p-4 border" v-for="(comment) in detailItem.comment" :key="comment">
               {{ comment }}
             </li>
           </ul>
@@ -45,3 +48,4 @@ export default defineComponent({
   }
 });
 </script>
+
