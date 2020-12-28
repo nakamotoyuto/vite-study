@@ -6,13 +6,13 @@
 </template>
 <script>
 import TodoList from '../components/TodoList.vue'
-import todoInput from '../components/todoInput.vue'
+import TodoInput from '../components/TodoInput.vue'
 
 export default {
   name: "Home",
   components: {
     TodoList,
-    todoInput
+    TodoInput
   }
 };
 </script>

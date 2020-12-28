@@ -6,7 +6,7 @@
       </p>
       <div>
         <router-link class="btn bg-gray-400 hover:bg-gray-600 mr-4" :to="{name: 'detail', params: {id: todo.id}}">詳細</router-link>
-        <complete-button :index="index" @complete-todo="completeTodoAction" />
+        <complete-button :index="index" />
       </div>
     </li>
   </ul>
@@ -14,14 +14,12 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive} from 'vue'
-import todoInput from '../components/todoInput.vue'
 import CompleteButton from '../components/CompleteButton.vue'
 import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'TodoList',
   components: {
-    todoInput,
     CompleteButton
   },
 
@@ -41,11 +39,8 @@ export default defineComponent({
       }
     })
 
-    const completeTodoAction = (targetIndex) => {
-      state.todoList.splice(targetIndex, 1)
-    }
 
-    return { state, completeTodoAction, lastId };
+    return { state, lastId };
   }
 });
 </script>

@@ -35,14 +35,12 @@ import { computed, defineComponent, reactive, SetupContext} from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 import todoInput from '../components/todoInput.vue'
-import Home from './Home.vue'
 
 export default defineComponent({
   name: 'Detail',
 
   components: {
-    todoInput,
-    Home
+    todoInput
   },
   setup() {
     const store = useStore()

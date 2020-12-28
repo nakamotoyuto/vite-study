@@ -1,9 +1,10 @@
 <template>
-  <button class="btn btn-green" v-bind="props.index" @click="completed"> 完了</button>
+  <button class="btn btn-green" @click="completed"> 完了</button>
 </template>
 
 <script lang="ts">
 import { defineComponent, SetupContext, computed, reactive, ref } from 'vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'CompleteButton',
@@ -12,16 +13,15 @@ export default defineComponent({
       type: Number
     }
   },
-
   setup(props, context: SetupContext) {
-    const todoRef = ref<number>(props.index)
+    const store = useStore()
 
     const completed = (e) =>{
-      console.log(todoRef.value)
-      context.emit('complete-todo', todoRef.value);
+      const targetIndex = props.index
+      store.commit('complete', targetIndex)
     };
 
-    return { completed, todoRef, props};
+    return { completed };
   }
 });
 </script>

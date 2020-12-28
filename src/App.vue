@@ -9,14 +9,9 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import { defineComponent, ref } from 'vue'
-import TodoList from './components/TodoList.vue'
 
-export default {
+export default defineComponent({
   name: 'App',
-  components: {
-    TodoList
-  }
-}
+})
 </script>

@@ -26,7 +26,6 @@
       const commentRef = ref<string>('')
 
     const routePath = route.path
-    console.log(routePath)
 
     const lastId = () => {
       if(store.state.todoList.length === 0){
