@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 
 export interface State {
-  todoList: Array<{ id: number, todo: string, comment: Array<string> }>
+  todoList: Array<{ id: number, todo: string, comment: Array<{ comment: string, created_at: string }> }>
 }
 export const store = createStore<State>({
   state: {
@@ -14,8 +14,8 @@ export const store = createStore<State>({
     complete(state, targetIndex) {
       state.todoList.splice(targetIndex, 1)
     },
-    addcomment(state, { todoId, comment }) {
-      state.todoList[todoId - 1].comment.push(comment)
+    addcomment(state, { todoId, comment, created_at }) {
+      state.todoList[todoId - 1].comment.push({ comment: comment, created_at: created_at })
     }
 
   },

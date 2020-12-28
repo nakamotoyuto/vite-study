@@ -37,6 +37,16 @@
       }
     }
 
+    const getDate = () => {
+      const today = new Date();
+      const fullYear = today.getFullYear();
+      const month = today.getMonth()+1;
+      const date = today.getDate();
+      const hours = today.getHours();
+      const minutes = today.getMinutes();
+      return `${fullYear}/${month}/${date} ${hours}:${minutes}`
+    }
+
     const add = (e) =>{
     const value = todoRef.value
     const comment = commentRef.value
@@ -45,11 +55,12 @@
       todoRef.value = ''
     };
 
+
     const addComment = (e) => {
       const comment = commentRef.value
       const todoId = route.params.id
-      console.log(route.params.id)
-      store.commit('addcomment', {todoId, comment})
+      const created_at = getDate()
+      store.commit('addcomment', {todoId, comment, created_at})
       commentRef.value = ''
     }
 

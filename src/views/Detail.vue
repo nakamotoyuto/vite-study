@@ -11,8 +11,11 @@
             コメント一覧
           </h3>
           <ul class="my-8">
-            <li class="mb-4 last:mb-0 flex justify-between items-center font-semibold p-4 border" v-for="(comment) in detailItem.comment" :key="comment">
-              {{ comment }}
+            <li v-for="(comment) in detailItem.comment" :key="comment" class="mb-4 last:mb-0 flex justify-between items-center font-semibold p-4 border" >
+              <div class="commentBox">
+                <div class="date  font-normal text-sm text-gray-400">{{comment.created_at}}</div>
+                <p>{{ comment.comment }}</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -20,8 +23,10 @@
       <todoInput />
     </template>
     <template v-else>
-      <h2>データが存在しません</h2>
-      <router-link to="/" class="btn bg-gray-400 hover:bg-gray-600">TOPへ</router-link>
+      <div class="p-8">
+        <h2 class="mb-4 font-semibold text-2xl">データが存在しません</h2>
+        <router-link to="/" class="btn bg-gray-400 hover:bg-gray-200">TOPへ</router-link>
+      </div>
     </template>
   </div>
 </template>
