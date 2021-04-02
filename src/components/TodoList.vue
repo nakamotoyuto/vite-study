@@ -15,6 +15,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive} from 'vue'
 import CompleteButton from '../components/CompleteButton.vue'
+import { userController } from '../../@use/useController'
 import { useStore } from 'vuex'
 
 export default defineComponent({
@@ -24,12 +25,6 @@ export default defineComponent({
   },
 
   setup() {
-    const store = useStore()
-    const state = reactive<{todoList: Array<{id: number, value: string}>}>({
-      todoList: store.state.todoList
-    });
-
-
     const lastId = computed(() => {
       if(state.todoList.length === 0){
         return 1
